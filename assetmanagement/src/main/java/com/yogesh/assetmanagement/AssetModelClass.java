@@ -1,5 +1,9 @@
 package com.yogesh.assetmanagement;
 
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AssetModelClass {
 	
 	private int assetId;
@@ -7,6 +11,9 @@ public class AssetModelClass {
 	private String assetType;
 	private String assetSerialNumber;
 	private String assetPurchaseDate;
+	
+	Pattern pattern ;
+	Matcher matcher;
 	
 	public int getAssetId() {
 		return assetId;
@@ -17,8 +24,18 @@ public class AssetModelClass {
 	public String getAssetName() {
 		return assetName;
 	}
-	public void setAssetName(String assetName) {
-		this.assetName = assetName;
+	public void setAssetName(String assetName, Scanner scanner) {
+		
+		pattern = Pattern.compile("^[A-Za-z ]+{1,}$");
+		matcher = pattern.matcher(assetName);
+		
+		if(matcher.matches()) {
+			this.assetName = assetName;
+		}
+		else {
+			System.out.println("Enter Valid Asset Name :");
+		}
+		
 	}
 	public String getAssetType() {
 		return assetType;
